@@ -18,17 +18,15 @@ Add the application to the `dropins` folder and then access at <http://localhost
 
 ## Development
 
-1. Pre-requisities:
-    1. Java >= 8 is required on your `PATH`; for example, [IBM Semeru Runtimes](https://developer.ibm.com/languages/java/semeru-runtimes/downloads/)
-    1. [Apache Maven](https://maven.apache.org/download.cgi) is required on your `PATH`.
+1. Java >= 8 is required on your `PATH`; for example, [IBM Semeru Runtimes](https://developer.ibm.com/languages/java/semeru-runtimes/downloads/)
 1. Build the WAR file:
    ```
-   mvn clean install
+   ./mvnw clean install
    ```
     1. The file should be under `target/helloworldjsp.war`
 1. Or build and run Liberty:
    ```
-   mvn clean install liberty:run
+   ./mvnw liberty:dev
    ```
     1. Wait for the message, "server is ready to run a smarter planet". For example:
        ```
