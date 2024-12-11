@@ -38,6 +38,11 @@
         <liberty.runtime.groupId>io.openliberty</liberty.runtime.groupId>
         <liberty.runtime.artifactId>openliberty-kernel</liberty.runtime.artifactId>
 
+        <!--
+          liberty.var.* properties generate configDropins/overrides/liberty-plugin-variable-config.xml
+          https://github.com/OpenLiberty/ci.maven/blob/main/docs/common-server-parameters.md
+        -->
+
         <!-- Test dependencies -->
         <version.junit-jupiter-engine>5.10.2</version.junit-jupiter-engine>
         <version.httpclient5>5.3.1</version.httpclient5>

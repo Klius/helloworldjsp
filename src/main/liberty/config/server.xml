@@ -17,11 +17,11 @@
 <server>
     <featureManager>
         <feature>jsp-2.2</feature>
-        <!-- So that Liberty exposes a TLS port. -->
-        <feature>transportSecurity-1.0</feature>
     </featureManager>
     
     <httpEndpoint host="*" httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint" />
-    
-    <webApplication id="helloworldjsp" location="helloworldjsp.war" name="helloworldjsp" contextRoot="/" />
+
+    <webApplication location="helloworldjsp.war" contextRoot="/" />
+
+    <!-- See configDropins/*/*.xml for other configuration -->
 </server>
