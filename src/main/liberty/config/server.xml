@@ -20,8 +20,8 @@ server.xml: https://openliberty.io/docs/latest/reference/config/server-configura
     password (optionally encrypted):
     https://openliberty.io/docs/latest/reference/feature/transportSecurity.html
 
-    We choose the latter route so that we can pick up the password from non-envar
-    sources which makes it easy to run without needing to git commit a password in server.env.
+    We choose the latter for more flexibility. The value must be a minimum
+    of 6 characters (see CWPKI0808E).
   -->
   <variable name="keystore_password" defaultValue="changeme" />
   <keyStore id="defaultKeyStore" password="${keystore_password}" />
