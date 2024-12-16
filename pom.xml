@@ -42,11 +42,6 @@
     <liberty.runtime.artifactId>openliberty-kernel</liberty.runtime.artifactId>
 
     <!--
-    https://openliberty.io/docs/latest/reference/command/server-package.html#_options
-    -->
-    <packaging.type>minify,runnable</packaging.type>
-
-    <!--
       liberty.var.* properties generate configDropins/overrides/liberty-plugin-variable-config.xml
       https://github.com/OpenLiberty/ci.maven/blob/main/docs/common-server-parameters.md
     -->
@@ -111,7 +106,10 @@
         <version>${version.liberty.maven.plugin}</version>
         <configuration>
           <serverName>${project.artifactId}Server</serverName>
-          <include>${packaging.type}</include>
+          <!--
+          https://openliberty.io/docs/latest/reference/command/server-package.html#_options
+          -->
+          <include>minify,runnable</include>
         </configuration>
       </plugin>
       <plugin>
