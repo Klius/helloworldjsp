@@ -38,8 +38,16 @@
     <!--
     https://github.com/OpenLiberty/ci.maven/blob/main/docs/installation-configuration.md#using-maven-artifact
     -->
+
+    <!-- WebSphere Liberty -->
+    <liberty.runtime.groupId>com.ibm.websphere.appserver.runtime</liberty.runtime.groupId>
+    <liberty.runtime.artifactId>wlp-kernel</liberty.runtime.artifactId>
+
+    <!-- Open Liberty -->
+    <!--
     <liberty.runtime.groupId>io.openliberty</liberty.runtime.groupId>
     <liberty.runtime.artifactId>openliberty-kernel</liberty.runtime.artifactId>
+    -->
 
     <!--
       liberty.var.* properties generate configDropins/overrides/liberty-plugin-variable-config.xml
