@@ -34,6 +34,7 @@
     <version.liberty.maven.plugin>3.11.1</version.liberty.maven.plugin>
     <version.maven-war-plugin>3.4.0</version.maven-war-plugin>
     <version.maven-compiler-plugin>3.13.0</version.maven-compiler-plugin>
+    <version.maven-antrun-plugin>3.1.0</version.maven-antrun-plugin>
 
     <!--
     https://github.com/OpenLiberty/ci.maven/blob/main/docs/installation-configuration.md#using-maven-artifact
@@ -141,6 +142,46 @@
           <compilerArgument>-Xlint:-options</compilerArgument>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>${version.maven-antrun-plugin}</version>
+        <executions>
+          <execution>
+            <phase>deploy</phase>
+            <configuration>
+              <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                <echo level="info" message="Building container image ${project.artifactId}" />
+                <exec dir="${project.basedir}" executable="podman" failonerror="true">
+                  <arg value="build" />
+                  <arg value="--platform"/>
+                  <arg value="linux/amd64"/>
+                  <arg value="--cap-add"/>
+                  <arg value="CHECKPOINT_RESTORE"/>
+                  <arg value="--cap-add" />
+                  <arg value="SYS_PTRACE" />
+                  <arg value="--cap-add" />
+                  <arg value="SETPCAP" />
+                  <arg value="--security-opt" />
+                  <arg value="seccomp=unconfined" />
+                  <arg value="--file" />
+                  <arg value="Containerfile" />
+                  <arg value="-t" />
+                  <arg value="${project.artifactId}" />
+                  <arg value="." />
+                </exec>
+
+                <echo level="info" message="==================" />
+                <echo level="info" message="Created local container image ${project.artifactId}" />
+                <echo level="info" message="To run this image:" />
+                <echo level="info" message="podman run --privileged --rm --rm -p 9080:9080 -p 9443:9443 -it ${project.artifactId}" />
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
 
     <!--
@@ -207,6 +248,16 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <configuration>
+            <!--
+              Disable the default deploy plugin so that we can optionally
+              use the deploy phase to build the container.
+            -->
+            <skip>true</skip>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>

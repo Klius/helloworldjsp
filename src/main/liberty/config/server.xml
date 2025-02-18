@@ -4,7 +4,8 @@ server.xml: https://openliberty.io/docs/latest/reference/config/server-configura
 -->
 <server>
   <featureManager>
-    <feature>jsp-2.3</feature>
+    <platform>javaee-8.0</platform>
+    <feature>jsp</feature>
     <feature>transportSecurity-1.0</feature>
   </featureManager>
 
