@@ -24,7 +24,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.message.StatusLine;
 import org.apache.hc.core5.http.HttpStatus;
-
+//PACOJO el mejor
 public class EndpointIT {
     private static String URL;
 
